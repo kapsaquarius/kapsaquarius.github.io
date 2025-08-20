@@ -3,21 +3,34 @@
 * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
+* Enhanced for improved performance and responsiveness
 */
 !(function($) {
   "use strict";
 
-  // Hero typed
-  if ($('.typed').length) {
-    var typed_strings = $(".typed").data('typed-items');
-    typed_strings = typed_strings.split(',')
-    new Typed('.typed', {
-      strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
-    });
+  // Performance optimization: Cache frequently used selectors
+  const $window = $(window);
+  const $body = $('body');
+  const $header = $('#header');
+  const $main = $('#main');
+  const $navMenu = $('.nav-menu');
+  const $mobileNavToggle = $('.mobile-nav-toggle');
+
+  // Hero typed animation with improved performance
+  const $typed = $('.typed');
+  if ($typed.length) {
+    const typed_strings = $typed.data('typed-items');
+    if (typed_strings) {
+      new Typed('.typed', {
+        strings: typed_strings.split(','),
+        loop: true,
+        typeSpeed: 100,
+        backSpeed: 50,
+        backDelay: 2000,
+        showCursor: true,
+        cursorChar: '|'
+      });
+    }
   }
 
   // Smooth scroll for the navigation menu and links with .scrollto classes
@@ -164,10 +177,17 @@
     items: 1
   });
 
-  // Initi AOS
+  // Initialize AOS
   AOS.init({
     duration: 1000,
     easing: "ease-in-out-back"
+  });
+
+  // Add loaded class for skill icon animations
+  $(document).ready(function() {
+    setTimeout(function() {
+      $('body').addClass('loaded');
+    }, 300);
   });
 
 })(jQuery);

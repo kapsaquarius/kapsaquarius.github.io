@@ -8,13 +8,19 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #272829;
+  line-height: 1.6;
 }
 
 a {
   color: #149ddd;
+  transition: color 0.3s ease;
 }
 
 a:hover {
@@ -29,6 +35,23 @@ h4,
 h5,
 h6 {
   font-family: "Raleway", sans-serif;
+}
+
+/* Hero title responsive styling */
+.hero-title {
+  font-size: clamp(2rem, 8vw, 4.5rem);
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+
+/* Utility classes for responsive text */
+.whiteText {
+  color: white;
+}
+
+.blackText {
+  color: black;
 }
 
 .center {
@@ -133,6 +156,7 @@ h6 {
   margin-left: 300px;
 }
 
+/* Enhanced responsive breakpoints */
 @media (max-width: 1199px) {
   #header {
     left: -300px;
@@ -140,6 +164,61 @@ h6 {
 
   #main {
     margin-left: 0;
+  }
+}
+
+/* Tablet specific improvements */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .skills .row {
+    margin: 0 -10px;
+  }
+  
+  .skills .col-3.col-md-2 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+    padding: 0 10px;
+  }
+  
+  .skill-icon {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Mobile specific improvements */
+@media (max-width: 767px) {
+  .skills .col-3.col-md-2 {
+    flex: 0 0 25%;
+    max-width: 25%;
+    margin-bottom: 20px;
+  }
+  
+  .skill-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* Better mobile navigation */
+  .nav-menu a {
+    padding: 15px 20px;
+    font-size: 16px;
+  }
+  
+  .nav-menu a span {
+    margin-left: 10px;
+  }
+  
+  /* Improved mobile portfolio cards */
+  .portfolio-item {
+    margin-bottom: 20px;
+  }
+  
+  .custom-card {
+    margin: 0 10px;
+  }
+  
+  .portfolio-caption h4 {
+    font-size: 16px;
   }
 }
 
@@ -251,10 +330,6 @@ h6 {
 }
 
 #hero h1 {
-  margin: 0 0 10px 0;
-  font-size: 64px;
-  font-weight: 700;
-  line-height: 56px;
   color: #fff;
 }
 
@@ -279,15 +354,18 @@ h6 {
 }
 
 @media (max-width: 768px) {
-  #hero h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
-
-  #hero h2 {
+  #hero p {
     font-size: 18px;
-    line-height: 24px;
     margin-bottom: 30px;
+  }
+  
+  /* Better mobile spacing */
+  section {
+    padding: 40px 0;
+  }
+  
+  .section-title h2 {
+    font-size: 24px;
   }
 }
 
@@ -410,7 +488,138 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Akills
+# Skills - Enhanced Design
+--------------------------------------------------------------*/
+
+/* Skills Section Container */
+.skills {
+  padding: 80px 0;
+}
+
+/* Enhanced Skills Categories */
+.skills-category {
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  border-left: 4px solid #149ddd;
+}
+
+.skills-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Category Headers */
+.skill-category-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f5f8fd;
+}
+
+.skill-category-icon {
+  font-size: 28px;
+  color: #149ddd;
+  margin-right: 15px;
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #149ddd, #37b3ed);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 15px rgba(20, 157, 221, 0.3);
+}
+
+.skill-category-header h4 {
+  margin: 0;
+  color: #173b6c;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* Enhanced Skill Grid */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 20px;
+  align-items: center;
+  justify-items: center;
+}
+
+/* Enhanced Skill Items */
+.skill-item {
+  position: relative;
+  padding: 15px;
+  border-radius: 12px;
+  background: #f8f9fa;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  border: 2px solid transparent;
+  overflow: hidden;
+}
+
+/* Shimmer effect for skill items */
+.skill-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(20, 157, 221, 0.1), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.skill-item:hover {
+  background: white;
+  border-color: #149ddd;
+  box-shadow: 0 8px 20px rgba(20, 157, 221, 0.2);
+}
+
+.skill-item:hover::before {
+  left: 100%;
+}
+
+/* Skill tooltips */
+.skill-item::after {
+  content: attr(data-skill);
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #173b6c;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.skill-item:hover::after {
+  opacity: 1;
+  visibility: visible;
+  bottom: -30px;
+  box-shadow: 0 5px 0 -2px #173b6c;
+}
+
+/*--------------------------------------------------------------
+# Skills - Original Styles
 --------------------------------------------------------------*/
 .skills .progress {
   height: 50px;
@@ -503,6 +712,106 @@ section {
   top: 0;
   background: #fff;
   border: 2px solid #1f5297;
+}
+
+/* Resume Logo Containers */
+.resume .resume-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+/* Keep Summary section as original block layout */
+.resume .resume-item.pb-0 {
+  display: block !important;
+  flex-direction: column !important;
+}
+
+.resume .resume-item.pb-0 h4 {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.resume .resume-item.pb-0 p {
+  width: 100%;
+  margin: 0;
+}
+
+.resume .resume-logo-container {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e4edf9;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.resume .resume-logo-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 82, 151, 0.15);
+  border-color: #1f5297;
+}
+
+.resume .resume-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  filter: grayscale(20%);
+}
+
+.resume .resume-logo:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.resume .resume-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Placeholder styling for missing logos */
+.resume .resume-logo[src*="placeholder"],
+.resume .resume-logo[data-placeholder]::before {
+  content: attr(data-placeholder);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8px;
+  color: #999;
+  text-align: center;
+  line-height: 1.2;
+  font-weight: 500;
+  background: #f8f9fa;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+/* Responsive adjustments for resume logos */
+@media (max-width: 768px) {
+  .resume .resume-item {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .resume .resume-logo-container {
+    width: 50px;
+    height: 50px;
+    align-self: flex-start;
+  }
+  
+  .resume .resume-logo {
+    width: 35px;
+    height: 35px;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -1110,13 +1419,261 @@ section {
   #footer {
     position: static;
     width: auto;
-    padding-right: 20px 15px;
+    padding: 20px 15px;
   }
 }
 
+/* Additional responsive improvements */
+@media (max-width: 575px) {
+  .hero-container {
+    padding: 0 15px;
+    text-align: center;
+  }
+  
+  .about .content ul {
+    padding-left: 15px;
+  }
+  
+  .facts .count-box {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .facts .count-box i {
+    float: none;
+    display: block;
+    margin: 0 auto 15px;
+  }
+  
+  .facts .count-box span,
+  .facts .count-box p {
+    margin-left: 0;
+  }
+}
+
+/* Enhanced skill icons with sophisticated hover effects */
 .skill-icon {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 12px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* SVG specific enhancements with multiple effects */
+.skill-icon svg {
+  width: 100%;
+  height: 100%;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-origin: center;
+}
+
+/* Glow effect background */
+.skill-icon::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(20, 157, 221, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+/* Advanced hover effects combining all animations */
+.skill-icon:hover {
+  transform: scale(1.08) rotate(2deg);
+  filter: drop-shadow(0 12px 24px rgba(20, 157, 221, 0.3)) 
+          drop-shadow(0 0 20px rgba(20, 157, 221, 0.2));
+  animation: skillPulse 2s ease-in-out infinite;
+}
+
+.skill-icon:hover::before {
+  opacity: 1;
+}
+
+.skill-icon:hover svg {
+  transform: scale(1.1) rotate(-2deg);
+  filter: brightness(1.1) saturate(1.2);
+}
+
+/* Pulse animation keyframes */
+@keyframes skillPulse {
+  0% { transform: scale(1.08) rotate(2deg); }
+  50% { transform: scale(1.12) rotate(2deg); }
+  100% { transform: scale(1.08) rotate(2deg); }
+}
+
+/* Enhanced SVG path animations */
+.skill-icon svg path,
+.skill-icon svg circle,
+.skill-icon svg rect {
+  transition: all 0.4s ease;
+}
+
+.skill-icon:hover svg path,
+.skill-icon:hover svg circle,
+.skill-icon:hover svg rect {
+  stroke-width: 1.2;
+  filter: drop-shadow(0 0 3px rgba(20, 157, 221, 0.5));
+}
+
+/* Technology-specific hover effects */
+
+/* Programming Languages - Code theme */
+.skills-category:nth-child(1) .skill-icon:hover {
+  filter: drop-shadow(0 12px 24px rgba(76, 175, 80, 0.3)) 
+          drop-shadow(0 0 20px rgba(76, 175, 80, 0.2));
+}
+
+.skills-category:nth-child(1) .skill-icon:hover::before {
+  background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+}
+
+/* Databases - Data theme */
+.skills-category:nth-child(2) .skill-icon:hover,
+.skills-category:nth-child(3) .skill-icon:hover {
+  filter: drop-shadow(0 12px 24px rgba(255, 152, 0, 0.3)) 
+          drop-shadow(0 0 20px rgba(255, 152, 0, 0.2));
+}
+
+.skills-category:nth-child(2) .skill-icon:hover::before,
+.skills-category:nth-child(3) .skill-icon:hover::before {
+  background: radial-gradient(circle, rgba(255, 152, 0, 0.1) 0%, transparent 70%);
+}
+
+/* Cloud & Dev Tools - Tech theme */
+.skills-category:nth-child(4) .skill-icon:hover,
+.skills-category:nth-child(5) .skill-icon:hover {
+  filter: drop-shadow(0 12px 24px rgba(33, 150, 243, 0.3)) 
+          drop-shadow(0 0 20px rgba(33, 150, 243, 0.2));
+}
+
+.skills-category:nth-child(4) .skill-icon:hover::before,
+.skills-category:nth-child(5) .skill-icon:hover::before {
+  background: radial-gradient(circle, rgba(33, 150, 243, 0.1) 0%, transparent 70%);
+}
+
+/* ML & AI - Brain theme */
+.skills-category:nth-child(6) .skill-icon:hover {
+  filter: drop-shadow(0 12px 24px rgba(156, 39, 176, 0.3)) 
+          drop-shadow(0 0 20px rgba(156, 39, 176, 0.2));
+  animation: skillBrainPulse 2s ease-in-out infinite;
+}
+
+.skills-category:nth-child(6) .skill-icon:hover::before {
+  background: radial-gradient(circle, rgba(156, 39, 176, 0.1) 0%, transparent 70%);
+}
+
+/* Testing - Quality theme */
+.skills-category:nth-child(7) .skill-icon:hover {
+  filter: drop-shadow(0 12px 24px rgba(244, 67, 54, 0.3)) 
+          drop-shadow(0 0 20px rgba(244, 67, 54, 0.2));
+}
+
+.skills-category:nth-child(7) .skill-icon:hover::before {
+  background: radial-gradient(circle, rgba(244, 67, 54, 0.1) 0%, transparent 70%);
+}
+
+/* Visualization - Chart theme */
+.skills-category:nth-child(8) .skill-icon:hover {
+  filter: drop-shadow(0 12px 24px rgba(255, 193, 7, 0.3)) 
+          drop-shadow(0 0 20px rgba(255, 193, 7, 0.2));
+}
+
+.skills-category:nth-child(8) .skill-icon:hover::before {
+  background: radial-gradient(circle, rgba(255, 193, 7, 0.1) 0%, transparent 70%);
+}
+
+/* Special animation for AI/ML tools */
+@keyframes skillBrainPulse {
+  0% { transform: scale(1.08) rotate(2deg); }
+  25% { transform: scale(1.12) rotate(-1deg); }
+  50% { transform: scale(1.15) rotate(2deg); }
+  75% { transform: scale(1.12) rotate(-1deg); }
+  100% { transform: scale(1.08) rotate(2deg); }
+}
+
+/* Floating animation for special technologies */
+@keyframes skillFloat {
+  0%, 100% { transform: scale(1.08) rotate(2deg); }
+  50% { transform: scale(1.12) rotate(-2deg); }
+}
+
+/* CUDA specific enhancement */
+.skill-icon:hover svg .cuda-logo {
+  fill: #9acd32;
+  filter: drop-shadow(0 0 8px rgba(154, 205, 50, 0.6));
+}
+
+.skill-icon:hover svg .cuda-text {
+  fill: #333;
+  filter: drop-shadow(0 0 3px rgba(51, 51, 51, 0.4));
+}
+
+/* Special effects for PNG icons */
+.skill-icon img[src*=".png"]:hover {
+  filter: brightness(1.1) contrast(1.1) saturate(1.2);
+}
+
+/* WebP specific enhancements */
+.skill-icon img[src*=".webp"]:hover {
+  filter: brightness(1.15) saturate(1.3);
+}
+
+/* Mobile and touch device optimizations */
+@media (max-width: 768px) {
+  .skill-icon {
+    transition: all 0.3s ease;
+  }
+  
+  .skill-icon:hover {
+    transform: scale(1.05);
+    animation: none; /* Disable pulse animation on mobile for performance */
+  }
+  
+  .skill-item:hover::after {
+    display: none; /* Hide tooltips on mobile */
+  }
+  
+  /* Reduce glow intensity on mobile */
+  .skills-category .skill-icon:hover {
+    filter: drop-shadow(0 6px 12px rgba(20, 157, 221, 0.2)) 
+            drop-shadow(0 0 10px rgba(20, 157, 221, 0.1)) !important;
+  }
+}
+
+/* Touch device specific styles */
+@media (hover: none) and (pointer: coarse) {
+  .skill-icon:active {
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+  }
+  
+  .skill-item:active {
+    background: #e9ecef;
+  }
+}
+
+/* High performance mode for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .skill-icon {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .skill-icon:hover {
+    transform: none !important;
+    animation: none !important;
+  }
+  
+  .skill-item::before {
+    transition: none !important;
+  }
 }
 
 .profile img,
@@ -1295,6 +1852,34 @@ section {
   line-height: 1.5;
   margin-bottom: 1rem;
   flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Certification Image Styling */
+.cert-img {
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+/* Deutsche Bank Certification Images */
+.cert-img-db {
+  width: 160px;
+  height: 160px;
+}
+
+/* Deutsche Bank Cloud Engineer - larger to match ML Engineer badge visually */
+.cert-img-db-ce {
+  width: 200px;
+  height: 200px;
+}
+
+/* Udemy Certification Images */
+.cert-img-udemy {
+  width: 180px;
+  height: 90px;
 }
 
 .certification-card-content .cert-footer {
@@ -1322,4 +1907,72 @@ section {
 .certifications .custom-card:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Performance optimizations */
+.portfolio-wrap img,
+.skill-icon,
+.custom-card {
+  will-change: transform;
+}
+
+/* Enhanced skill icons with smooth animations */
+.skill-icon:hover svg path,
+.skill-icon:hover svg g {
+  transition: all 0.3s ease;
+}
+
+.skill-icon:hover svg .cuda-logo {
+  fill: #9acd32;
+}
+
+.skill-icon:hover svg .cuda-text {
+  fill: #333;
+}
+
+/* Touch device support */
+.touch-hover {
+  transform: translateY(-5px) scale(1.05);
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+}
+
+/* Loading state - Fixed to not block scrolling */
+body:not(.loaded) .skill-icon {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+body.loaded .skill-icon {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Enhanced accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  #header,
+  .mobile-nav-toggle,
+  .back-to-top {
+    display: none !important;
+  }
+  
+  #main {
+    margin-left: 0 !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
 }
