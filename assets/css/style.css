@@ -45,21 +45,8 @@ h6 {
   line-height: 1.2;
 }
 
-/* Utility classes for responsive text */
-.whiteText {
-  color: white;
-}
 
-.blackText {
-  color: black;
-}
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
 
 /*--------------------------------------------------------------
 # Back to top button
